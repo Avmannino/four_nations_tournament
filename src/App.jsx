@@ -3,14 +3,12 @@ import {
   ArrowDown,
   ArrowRight,
   Award,
-  CalendarDays,
   Check,
   CheckCircle2,
   ChevronDown,
   ChevronRight,
   Clock3,
   CreditCard,
-  Flag,
   Gift,
   LockKeyhole,
   Mail,
@@ -27,35 +25,38 @@ import usaJersey from './assets/usa-jersey.png';
 import canadaJersey from './assets/canada-jersey.png';
 import finlandJersey from './assets/finland-jersey.png';
 import swedenJersey from './assets/sweden-jersey.png';
+import { CanadaFlag, FinlandFlag, SwedenFlag, UsaFlag } from './flags';
 
 const API = (import.meta.env.VITE_API_BASE_URL || '/api').replace(/\/$/, '');
 const CONTACT_EMAIL = import.meta.env.VITE_EVENT_CONTACT_EMAIL?.trim();
+// TODO: replace with the real registration link once available.
+const REGISTER_URL = '#';
 
 const nations = [
   {
     name: 'USA',
-    flag: '🇺🇸',
+    flag: UsaFlag,
     kit: 'Vintage cream / red / navy',
     image: usaJersey,
     color: '#ca3141',
   },
   {
     name: 'CANADA',
-    flag: '🇨🇦',
+    flag: CanadaFlag,
     kit: 'Red / black',
     image: canadaJersey,
     color: '#e4313a',
   },
   {
     name: 'FINLAND',
-    flag: '🇫🇮',
+    flag: FinlandFlag,
     kit: 'White / cyan / navy',
     image: finlandJersey,
     color: '#4aaff0',
   },
   {
     name: 'SWEDEN',
-    flag: '🇸🇪',
+    flag: SwedenFlag,
     kit: 'Yellow / navy',
     image: swedenJersey,
     color: '#f7bd32',
@@ -336,14 +337,11 @@ export default function App() {
         <section className="hero">
           <div className="content-width hero-inner">
             <div className="hero-copy">
-              <div className="hero-tag"><span /> THE NEXT GENERATION TAKES THE ICE</div>
-              <h1>FOUR NATIONS.<br /><em>ONE STAGE.</em><br /></h1>
+              <h1>THE ROAD TO GOLD<br /><em>STARTS HERE.</em><br /></h1>
               <p>Eight elite youth teams. Four countries. One unforgettable weekend of competition, camaraderie, and national pride.</p>
               <div className="hero-actions">
-                <a className="button button--red" href="#about">Explore the tournament <ArrowRight size={18} /></a>
-                <a className="button button--outline" href="#register"><LockKeyhole size={17} /> Invited players</a>
+                <a className="button button--red" href={REGISTER_URL}>Register Here <ArrowRight size={18} /></a>
               </div>
-              <div className="hero-date"><CalendarDays size={18} /><strong>AUG 6–8, 2027</strong><span>·</span><MapPin size={18} /> WINGS ARENA · STAMFORD, CT</div>
             </div>
             <div className="hero-visual">
               <div className="hero-logo-halo" />
@@ -352,12 +350,14 @@ export default function App() {
           </div>
         </section>
 
-        <section className="stat-bar" aria-label="Tournament at a glance">
-          <div className="content-width stat-grid">
-            <div><strong>04</strong><span>COUNTRIES</span></div>
-            <div><strong>08</strong><span>INVITE-ONLY TEAMS</span></div>
-            <div><strong>02</strong><span>AA DIVISIONS</span></div>
-            <div><strong>05</strong><span>GAMES PER TEAM</span></div>
+        <section className="details-bar" aria-label="Tournament at a glance">
+          <div className="content-width">
+            <dl className="details-grid">
+              <div className="details-item"><dt>DATES</dt><dd>August 6–8, 2027</dd></div>
+              <div className="details-item"><dt>DIVISIONS</dt><dd>2016 &amp; 2017 AA</dd></div>
+              <div className="details-item"><dt>FORMAT</dt><dd>8 invite-only teams</dd></div>
+              <div className="details-item"><dt>PLAYER FEE</dt><dd>$425 per player</dd></div>
+            </dl>
           </div>
         </section>
 
@@ -370,21 +370,20 @@ export default function App() {
               <a href="#format" className="inline-link">See tournament format <ArrowRight size={18} /></a>
             </div>
             <div className="about-showcase">
-              <div className="showcase-card showcase-card--one"><span className="showcase-label">DIVISION 01</span><strong>2016</strong><span>AA BIRTH YEAR</span></div>
-              <div className="showcase-card showcase-card--two"><span className="showcase-label">DIVISION 02</span><strong>2017</strong><span>AA BIRTH YEAR</span></div>
-              <div className="showcase-note"><Flag size={19} /><span>FOUR NATIONAL TEAMS PER DIVISION</span></div>
+              <div className="showcase-card showcase-card--one"><span className="showcase-label">DIVISION 01 AA</span><div className="showcase-year"><strong>2016</strong><span>BIRTH YEAR</span></div></div>
+              <div className="showcase-card showcase-card--two"><span className="showcase-label">DIVISION 02 AA</span><div className="showcase-year"><strong>2017</strong><span>BIRTH YEAR</span></div></div>
             </div>
           </div>
         </section>
 
         <section id="nations" className="nations-section section-pad">
           <div className="content-width">
-            <SectionHeader title="Represent your colors." body="Country-inspired uniforms are part of the experience. Every registered player keeps their jersey and matching hockey socks." light />
+            <SectionHeader title="Represent your colors." body="Country-inspired uniforms are part of the experience. Every registered player keeps their jersey and socks." light />
             <div className="nations-grid">
               {nations.map((nation) => (
                 <article className="nation-card" key={nation.name} style={{ '--nation-accent': nation.color }}>
                   <div className="nation-image-wrap"><img src={nation.image} alt={`${nation.name} proposed youth jersey and hockey sock concept`} loading="lazy" /></div>
-                  <div className="nation-card-bottom"><div><span className="nation-flag" aria-hidden="true">{nation.flag}</span><h3>{nation.name}</h3></div><small>{nation.kit}</small></div>
+                  <div className="nation-card-bottom"><div><nation.flag /><h3>{nation.name}</h3></div><small>{nation.kit}</small></div>
                 </article>
               ))}
             </div>
