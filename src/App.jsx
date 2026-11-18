@@ -40,7 +40,6 @@ const nations = [
     kit: 'Vintage cream / red / navy',
     image: usaJersey,
     color: '#ca3141',
-    number: '01',
   },
   {
     name: 'CANADA',
@@ -48,7 +47,6 @@ const nations = [
     kit: 'Red / black',
     image: canadaJersey,
     color: '#e4313a',
-    number: '02',
   },
   {
     name: 'FINLAND',
@@ -56,7 +54,6 @@ const nations = [
     kit: 'White / cyan / navy',
     image: finlandJersey,
     color: '#4aaff0',
-    number: '03',
   },
   {
     name: 'SWEDEN',
@@ -64,7 +61,6 @@ const nations = [
     kit: 'Yellow / navy',
     image: swedenJersey,
     color: '#f7bd32',
-    number: '04',
   },
 ];
 
@@ -414,7 +410,7 @@ export default function App() {
             <div className="nations-grid">
               {nations.map((nation) => (
                 <article className="nation-card" key={nation.name} style={{ '--nation-accent': nation.color }}>
-                  <div className="nation-image-wrap"><img src={nation.image} alt={`${nation.name} proposed youth jersey and hockey sock concept`} loading="lazy" /><span className="nation-index">{nation.number} / 04</span></div>
+                  <div className="nation-image-wrap"><img src={nation.image} alt={`${nation.name} proposed youth jersey and hockey sock concept`} loading="lazy" /></div>
                   <div className="nation-card-bottom"><div><span className="nation-flag" aria-hidden="true">{nation.flag}</span><h3>{nation.name}</h3></div><small>{nation.kit}</small></div>
                 </article>
               ))}
