@@ -107,7 +107,7 @@ const faqs = [
 function SectionHeader({ eyebrow, title, body, light = false }) {
   return (
     <div className={`section-heading ${light ? 'section-heading--light' : ''}`}>
-      <p className="eyebrow"><span className="eyebrow-line" />{eyebrow}</p>
+      {eyebrow && <p className="eyebrow"><span className="eyebrow-line" />{eyebrow}</p>}
       <h2>{title}</h2>
       {body && <p className="section-intro">{body}</p>}
     </div>
@@ -406,7 +406,7 @@ export default function App() {
 
         <section id="nations" className="nations-section section-pad">
           <div className="content-width">
-            <SectionHeader eyebrow="REPRESENT YOUR COLORS" title={<>Four nations.<br />One championship dream.</>} body="Country-inspired uniforms are part of the experience. Every registered player keeps their jersey and matching hockey socks." light />
+            <SectionHeader title="Represent your colors" body="Country-inspired uniforms are part of the experience. Every registered player keeps their jersey and matching hockey socks." light />
             <div className="nations-grid">
               {nations.map((nation) => (
                 <article className="nation-card" key={nation.name} style={{ '--nation-accent': nation.color }}>
