@@ -16,13 +16,11 @@ import {
   Mail,
   MapPin,
   Medal,
-  Menu,
   ShieldCheck,
   Shirt,
   Sparkles,
   Trophy,
   Users,
-  X,
 } from 'lucide-react';
 import logo from './assets/four-nations-logo.png';
 import usaJersey from './assets/usa-jersey.png';
@@ -331,33 +329,8 @@ function Registration() {
 }
 
 export default function App() {
-  const [menuOpen, setMenuOpen] = useState(false);
-
-  const nav = [
-    ['The tournament', '#about'],
-    ['Four nations', '#nations'],
-    ['Player experience', '#experience'],
-    ['FAQ', '#faq'],
-  ];
-
   return (
     <>
-      <div className="announcement"><span className="announcement-dot" /> AUGUST 6–8, 2027 <span className="announcement-divider">/</span> STAMFORD, CONNECTICUT <span className="announcement-divider">/</span> INVITATION ONLY</div>
-      <header className="site-header">
-        <div className="content-width header-inner">
-          <a className="header-brand" href="#top" aria-label="Four Nations Youth Games home" onClick={() => setMenuOpen(false)}>
-            <img src={logo} alt="" />
-            <span><strong>FUTURE STARS</strong><small>FOUR NATIONS YOUTH GAMES</small></span>
-          </a>
-          <nav className={menuOpen ? 'main-nav main-nav--open' : 'main-nav'} aria-label="Main navigation">
-            {nav.map(([label, url]) => <a href={url} key={url} onClick={() => setMenuOpen(false)}>{label}</a>)}
-            <a className="nav-register" href="#register" onClick={() => setMenuOpen(false)}>Private registration <ArrowRight size={16} /></a>
-          </nav>
-          <button className="mobile-menu-button" type="button" onClick={() => setMenuOpen(!menuOpen)} aria-label={menuOpen ? 'Close menu' : 'Open menu'} aria-expanded={menuOpen}>
-            {menuOpen ? <X /> : <Menu />}
-          </button>
-        </div>
-      </header>
 
       <main id="top">
         <section className="hero">
@@ -406,7 +379,7 @@ export default function App() {
 
         <section id="nations" className="nations-section section-pad">
           <div className="content-width">
-            <SectionHeader title="Represent your colors" body="Country-inspired uniforms are part of the experience. Every registered player keeps their jersey and matching hockey socks." light />
+            <SectionHeader title="Represent your colors." body="Country-inspired uniforms are part of the experience. Every registered player keeps their jersey and matching hockey socks." light />
             <div className="nations-grid">
               {nations.map((nation) => (
                 <article className="nation-card" key={nation.name} style={{ '--nation-accent': nation.color }}>
