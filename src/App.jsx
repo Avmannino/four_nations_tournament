@@ -25,6 +25,10 @@ import {
   X,
 } from 'lucide-react';
 import logo from './assets/four-nations-logo.png';
+import usaJersey from './assets/usa-jersey.png';
+import canadaJersey from './assets/canada-jersey.png';
+import finlandJersey from './assets/finland-jersey.png';
+import swedenJersey from './assets/sweden-jersey.png';
 
 const API = (import.meta.env.VITE_API_BASE_URL || '/api').replace(/\/$/, '');
 const CONTACT_EMAIL = import.meta.env.VITE_EVENT_CONTACT_EMAIL?.trim();
@@ -34,7 +38,7 @@ const nations = [
     name: 'USA',
     flag: '🇺🇸',
     kit: 'Vintage cream / red / navy',
-    image: '/images/usa-concept.webp',
+    image: usaJersey,
     color: '#ca3141',
     number: '01',
   },
@@ -42,7 +46,7 @@ const nations = [
     name: 'CANADA',
     flag: '🇨🇦',
     kit: 'Red / black',
-    image: '/images/canada-concept.webp',
+    image: canadaJersey,
     color: '#e4313a',
     number: '02',
   },
@@ -50,7 +54,7 @@ const nations = [
     name: 'FINLAND',
     flag: '🇫🇮',
     kit: 'White / cyan / navy',
-    image: '/images/finland-concept.webp',
+    image: finlandJersey,
     color: '#4aaff0',
     number: '03',
   },
@@ -58,7 +62,7 @@ const nations = [
     name: 'SWEDEN',
     flag: '🇸🇪',
     kit: 'Yellow / navy',
-    image: '/images/sweden-concept.webp',
+    image: swedenJersey,
     color: '#f7bd32',
     number: '04',
   },

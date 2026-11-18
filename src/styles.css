@@ -111,7 +111,7 @@ button:disabled { opacity: .68; cursor: not-allowed; transform: none !important;
 .nations-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 17px; margin-top: 42px; }
 .nation-card { background: #102a4d; border: 1px solid rgba(255,255,255,.1); border-top: 3px solid var(--nation-accent); border-radius: 5px; overflow: hidden; transition: transform .25s, box-shadow .25s; }
 .nation-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0,0,0,.25); }
-.nation-image-wrap { position: relative; background: #f7f8fb; aspect-ratio: 1 / 1.07; overflow: hidden; }
+.nation-image-wrap { position: relative; background: #000; aspect-ratio: 3 / 2; overflow: hidden; }
 .nation-image-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
 .nation-index { position: absolute; top: 11px; left: 12px; padding: 7px 8px; background: rgba(7,23,45,.83); color: #fff; border-radius: 3px; font-size: 9px; letter-spacing: .1em; font-weight: 800; }
 .nation-card-bottom { padding: 17px 18px 18px; }
@@ -284,7 +284,6 @@ button:disabled { opacity: .68; cursor: not-allowed; transform: none !important;
   .about-showcase { max-width: 570px; margin-inline: auto; width: 100%; }
   .showcase-card { aspect-ratio: 1 / .85; }
   .nations-grid { grid-template-columns: 1fr 1fr; }
-  .nation-image-wrap { aspect-ratio: 1.25; }
   .experience-grid { grid-template-columns: 1fr 1fr; }
   .format-layout { grid-template-columns: 1fr; }
   .overtime-note { grid-column: 1; }
@@ -329,7 +328,6 @@ button:disabled { opacity: .68; cursor: not-allowed; transform: none !important;
   .showcase-card strong { font-size: clamp(53px, 15vw, 84px); }
   .showcase-note { font-size: 8px; padding: 10px; }
   .nations-grid { gap: 12px; }
-  .nation-image-wrap { aspect-ratio: .9; }
   .nation-card-bottom { padding: 12px; }
   .nation-flag { font-size: 19px; }
   .nation-card h3 { font-size: 22px; }
