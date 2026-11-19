@@ -289,7 +289,7 @@ button:disabled { opacity: .68; cursor: not-allowed; transform: none !important;
   .details-items { gap: 16px 10px; }
   .details-items > div { font-size: 14px; }
   .registration-section { padding: 79px 0; }
-  .registration-aside h2 { font-size: 63px; }
+  .registration-aside h2 { font-size: min(63px, calc((100vw - 36px) / 6.5)); white-space: nowrap; }
   .registration-highlights { grid-template-columns: 1fr; gap: 16px; }
   .registration-card { padding: 23px 18px; }
   .footer-bottom { flex-direction: column; gap: 6px; }
