@@ -16,7 +16,7 @@
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 body { margin: 0; min-width: 320px; }
 a { color: inherit; text-decoration: none; }
 button, input { font: inherit; }
@@ -31,7 +31,7 @@ h1, h2 { font-family: 'Barlow Condensed', Impact, sans-serif; font-weight: 600; 
 
 /* Utility / navigation */
 .button { display: inline-flex; align-items: center; justify-content: center; text-align: center; gap: 12px; padding: 16px 22px; border: 1px solid transparent; border-radius: 4px; font-weight: 800; font-size: 12px; letter-spacing: .015em; transition: transform .2s, background .2s, border-color .2s; }
-.button:hover { transform: translateY(-2px); }
+@media (hover: hover) { .button:hover { transform: translateY(-2px); } }
 .button--red { background: var(--red); color: white; border-color: var(--red); }
 .button--red:hover { background: #d92038; }
 .button--outline { color: white; border: 1px solid rgba(255,255,255,.4); background: rgba(255,255,255,.04); }
@@ -56,7 +56,7 @@ button:disabled { opacity: .68; cursor: not-allowed; transform: none !important;
 .hero-copy > p { color: #d3dbe6; line-height: 1.9; font-size: 16px; max-width: 505px; }
 .hero-actions { display: flex; gap: 13px; flex-wrap: wrap; margin: 31px 0 0; }
 .hero-actions .button { min-width: 250px; font-size: 15px; box-shadow: 0 6px 20px rgba(255, 255, 255, .15); }
-.hero-visual { position: relative; display: flex; flex-direction: column; align-items: center; padding-top: 12px; translate: 40px 0; }
+.hero-visual { position: relative; display: flex; flex-direction: column; align-items: center; padding-top: 12px; translate: clamp(16px, 50vw - 600px, 40px) 0; }
 .hero-logo-halo { position: absolute; inset: 13% 1% 9%; border-radius: 50%; background: radial-gradient(ellipse, rgba(71,145,218,.3), rgba(71,145,218,.03) 67%, transparent 72%); filter: blur(14px); }
 .hero-logo { width: min(100%, 680px); max-height: 475px; object-fit: contain; position: relative; filter: drop-shadow(0 24px 35px rgba(0,0,0,.35)); }
 
@@ -90,7 +90,7 @@ button:disabled { opacity: .68; cursor: not-allowed; transform: none !important;
 .nations-section .section-heading { position: relative; max-width: 720px; }
 .nations-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 17px; margin-top: 42px; }
 .nation-card { background: #102a4d; border: 1px solid rgba(255,255,255,.1); border-top: 3px solid var(--nation-accent); border-radius: 5px; overflow: hidden; transition: transform .25s, box-shadow .25s; }
-.nation-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0,0,0,.25); }
+@media (hover: hover) { .nation-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0,0,0,.25); } }
 .nation-image-wrap { position: relative; display: flex; align-items: center; background: radial-gradient(ellipse 75% 65% at 50% 50%, color-mix(in srgb, var(--nation-accent) 30%, #000), #000 80%); aspect-ratio: 11 / 10; overflow: hidden; }
 .nation-image-wrap img { display: block; width: 100%; height: auto; -webkit-mask-image: linear-gradient(to bottom, transparent, #000 5%, #000 95%, transparent); mask-image: linear-gradient(to bottom, transparent, #000 5%, #000 95%, transparent); }
 .nation-card-bottom { padding: 24px 20px 28px; }
@@ -110,7 +110,7 @@ button:disabled { opacity: .68; cursor: not-allowed; transform: none !important;
 .fee-badge strong small { font: 600 15px 'DM Sans', sans-serif; color: #55647a; }
 .experience-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 17px; }
 .experience-card { background: #112a4c; color: #fff; padding: 26px; border: 1px solid rgba(255,255,255,.06); min-height: 195px; border-radius: 4px; box-shadow: 0 8px 22px rgba(11,25,45,.12); transition: box-shadow .2s, transform .2s; }
-.experience-card:hover { box-shadow: 0 16px 36px rgba(11,25,45,.22); transform: translateY(-3px); }
+@media (hover: hover) { .experience-card:hover { box-shadow: 0 16px 36px rgba(11,25,45,.22); transform: translateY(-3px); } }
 .experience-card-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 20px; }
 .experience-icon { width: 45px; height: 45px; display: grid; place-items: center; background: rgba(255,64,87,.14); color: #ff5468; border-radius: 6px; }
 .experience-number { font: 600 24px 'Barlow Condensed', sans-serif; color: rgba(255,255,255,.2); }
@@ -219,21 +219,26 @@ button:disabled { opacity: .68; cursor: not-allowed; transform: none !important;
 @media (max-width: 810px) {
   .section-pad { padding: 76px 0; }
   .hero-inner { grid-template-columns: 1fr 0.8fr; gap: 12px; }
-  .hero h1 { font-size: min(57px, 7.6vw); }
+  .hero h1 { font-size: min(57px, 7.2vw); }
   .hero-copy > p { font-size: 14px; }
   .hero-logo { max-height: 335px; }
+  .details-grid { grid-template-columns: 1fr 1fr; }
   .about-layout, .faq-layout { grid-template-columns: 1fr; gap: 45px; }
   .nations-grid { grid-template-columns: 1fr 1fr; }
+  .experience-top { align-items: flex-start; flex-direction: column; }
+  .fee-badge { margin: 0; }
   .experience-grid { grid-template-columns: 1fr 1fr; }
   .format-layout { grid-template-columns: 1fr; }
   .overtime-note { grid-column: 1; }
   .format-legend { display: flex; flex-wrap: wrap; }
+  .details-layout { grid-template-columns: 1fr; gap: 28px; }
   .registration-layout { grid-template-columns: 1fr; }
   .registration-card { translate: none; }
   .registration-aside { padding: 0; }
   .registration-aside > p:not(.eyebrow):not(.registration-fineprint) { max-width: 600px; }
   .registration-highlights { grid-template-columns: 1fr 1fr; }
   .registration-fineprint { max-width: 600px; }
+  .footer-main { flex-direction: column; align-items: flex-start; gap: 16px; }
 }
 
 @media (max-width: 580px) {
@@ -248,7 +253,7 @@ button:disabled { opacity: .68; cursor: not-allowed; transform: none !important;
   .hero-visual { padding: 0 40px 28px; translate: none; }
   .hero-logo { max-height: 340px; }
   .details-bar { padding: 28px 0; }
-  .details-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .details-grid { gap: 10px; }
   .details-item { padding: 14px 14px 16px; gap: 6px; }
   .details-item dt { font-size: 9px; }
   .details-item dd { font-size: 21px; }
@@ -258,31 +263,32 @@ button:disabled { opacity: .68; cursor: not-allowed; transform: none !important;
   .showcase-card strong { font-size: clamp(53px, 15vw, 84px); }
   .nations-grid { gap: 12px; }
   .nation-card-bottom { padding: 16px 14px 18px; }
+  .nation-card-bottom > div { gap: 7px; }
   .nation-flag { width: 26px; height: 17px; }
-  .nation-card h3 { font-size: 22px; }
+  .nation-card h3 { font-size: clamp(18px, 5.8vw, 22px); }
   .nation-card small { font-size: 10px; min-height: 28px; }
-  .experience-top { align-items: flex-start; flex-direction: column; }
-  .fee-badge { margin: 0; }
   .experience-grid { grid-template-columns: 1fr; gap: 12px; }
   .experience-card { min-height: 160px; }
   .experience-card-top { margin-bottom: 12px; }
-  .event-callout { flex-wrap: wrap; padding: 22px; }
-  .callout-link { margin: 0 0 0 80px; }
+  .event-callout { flex-direction: column; align-items: flex-start; gap: 14px; padding: 22px; }
+  .callout-link { margin: 0; }
   .format-step { grid-template-columns: 39px 1fr 18px; gap: 10px; padding: 17px 13px; }
   .format-step-count { font-size: 38px; }
   .format-step h3 { font-size: 24px; }
   .format-step small { font-size: 11px; }
   .format-step p, .overtime-note p { font-size: 14px; }
-  .details-layout { grid-template-columns: 1fr; gap: 28px; }
   .details-items { gap: 16px 10px; }
   .details-items > div { font-size: 14px; }
   .registration-section { padding: 79px 0; }
   .registration-aside h2 { font-size: 63px; }
   .registration-highlights { grid-template-columns: 1fr; gap: 16px; }
   .registration-card { padding: 23px 18px; }
-  .field--full { grid-column: 1; }
-  .footer-main { flex-direction: column; align-items: flex-start; gap: 16px; }
   .footer-bottom { flex-direction: column; gap: 6px; }
+}
+
+/* Landscape phones: let the hero size to its content instead of a fixed tall block */
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero, .hero-inner { min-height: auto; }
 }
 
 @media (prefers-reduced-motion: reduce) {
