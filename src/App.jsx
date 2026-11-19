@@ -26,7 +26,7 @@ import swedenJersey from './assets/sweden-jersey.png';
 import { CanadaFlag, FinlandFlag, SwedenFlag, UsaFlag } from './flags';
 
 const CONTACT_EMAIL = import.meta.env.VITE_EVENT_CONTACT_EMAIL?.trim() || 'tournament@wingsarena.com';
-// TODO: paste the EZFacility registration link here once organizers provide it.
+// TODO: paste the registration link here once organizers provide it.
 // Until then, registration buttons scroll to the on-page registration section.
 const REGISTER_URL = '';
 const registerLinkProps = REGISTER_URL
@@ -151,7 +151,7 @@ function Registration() {
           <h2>Got the invite?<br /><span>Lock in your spot.</span></h2>
           <p>
             Every invited player receives an individual invitation from tournament director
-            Jake Hewitt, along with private instructions for registering through EZFacility.
+            Jake Hewitt, along with private registration instructions.
           </p>
           <div className="registration-highlights">
             <div><ShieldCheck size={21} /><span>Personal invitations only</span></div>
@@ -169,7 +169,7 @@ function Registration() {
             <span className="registration-lock"><LockKeyhole size={20} /></span>
             <div>
               <p className="small-kicker">INVITATION-ONLY ACCESS</p>
-              <h3>Register through EZFacility</h3>
+              <h3>Player registration</h3>
             </div>
           </div>
           <p className="registration-intro">Have these details ready before you start:</p>
@@ -184,9 +184,9 @@ function Registration() {
             <p>Payment of $425 in full secures your player’s place. Player withdrawals are nonrefundable. If Wings Arena cancels the event, registered families receive a full refund.</p>
           </div>
           {REGISTER_URL ? (
-            <a className="button button--red button--full" {...registerLinkProps}>Continue to EZFacility <ArrowRight size={18} /></a>
+            <a className="button button--red button--full" {...registerLinkProps}>Continue to registration <ArrowRight size={18} /></a>
           ) : (
-            <span className="button button--full button--pending">EZFacility registration link coming soon</span>
+            <span className="button button--full button--pending">Registration link coming soon</span>
           )}
           <p className="registration-disclaimer">
             Questions about your invitation? Email <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
