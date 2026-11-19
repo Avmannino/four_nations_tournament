@@ -292,7 +292,9 @@ button:disabled { opacity: .68; cursor: not-allowed; transform: none !important;
   .registration-aside h2 { font-size: min(63px, calc((100vw - 36px) / 6.5)); white-space: nowrap; }
   .registration-highlights { grid-template-columns: 1fr; gap: 16px; }
   .registration-card { padding: 23px 18px; }
-  .footer-bottom { flex-direction: column; gap: 6px; }
+  .footer-main { align-items: center; text-align: center; }
+  .footer-location { flex-direction: column; gap: 6px; }
+  .footer-bottom { flex-direction: column; align-items: center; text-align: center; gap: 6px; }
 }
 
 /* Landscape phones: let the hero size to its content instead of a fixed tall block */
