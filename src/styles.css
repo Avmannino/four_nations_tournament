@@ -255,7 +255,7 @@ button:disabled { opacity: .68; cursor: not-allowed; transform: none !important;
   .hero-inner { grid-template-columns: 1fr; gap: 0; min-height: auto; }
   .hero-copy { padding: 0 0 56px; }
   .hero h1 { font-size: clamp(40px, 13vw, 82px); margin: 19px 0 22px; }
-  .hero-copy > p { max-width: 450px; font-size: 15px; line-height: 2.05; }
+  .hero-copy > p { max-width: 450px; margin-inline: auto; text-align: center; font-size: 15px; line-height: 2.05; }
   .hero-actions { margin: 24px 0 0; }
   .hero-actions .button { flex: 1 1 180px; padding: 14px 10px; font-size: 14px; }
   .hero-visual { order: -1; padding: 48px 0 0; translate: none; }
