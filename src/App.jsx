@@ -215,7 +215,7 @@ export default function App() {
         <section id="about" className="about-section section-pad">
           <div className="content-width about-layout">
             <div>
-              <SectionHeader eyebrow="THE TOURNAMENT" title={<>Built to compete. <span className="highlight-word">Coached to grow.</span></>} body="A selective, three-day event for invited local 2016 and 2017 AA players, built around meaningful games and real instruction, and designed to send every player home better than they arrived." />
+              <SectionHeader eyebrow="THE TOURNAMENT" title={<>Compete with purpose.<br /><span className="highlight-word">Develop with every shift.</span></>} body="A selective, three-day event for invited local 2016 and 2017 AA players, built around meaningful games and real instruction, and designed to send every player home better than they arrived." />
               <p className="about-prose">The Four Nations format places invited local AA players on one of four country-themed teams (USA, Canada, Finland, or Sweden) within their birth-year division. The theme gives the weekend its identity; the hockey gives it its purpose. Every team practices together, plays a full round-robin schedule, and competes through a semifinal and medal game, with a dedicated coach teaching the game from the first practice to the final whistle.</p>
               <div className="about-quickfacts"><div><Users size={22} /><span><strong>15 players per roster</strong><small>8 forwards · 5 defense · 2 goalies</small></span></div><div><ClipboardList size={22} /><span><strong>A dedicated coach for every team</strong><small>Teaching-focused, from practice through the medal round</small></span></div><div><MapPin size={22} /><span><strong>Wings Arena</strong><small>Stamford, Connecticut</small></span></div></div>
               <a href="#format" className="inline-link">See the tournament format <ArrowRight size={18} /></a>
@@ -229,7 +229,7 @@ export default function App() {
 
         <section id="nations" className="nations-section section-pad">
           <div className="content-width">
-            <SectionHeader title={<>Custom jerseys. <span className="highlight-word">Yours to keep.</span></>} body="Every player suits up in a country-themed tournament jersey with matching socks and the Four Nations emblem, designed for this event and theirs to keep long after the last game." light />
+            <SectionHeader title={<>Dressed for <span className="highlight-word">the occasion.</span></>} body="Every player suits up in a country-themed tournament jersey with matching socks and the Four Nations emblem, designed for this event and theirs to keep long after the last game." light />
             <div className="nations-grid">
               {nations.map((nation) => (
                 <article className="nation-card" key={nation.name} style={{ '--nation-accent': nation.color }}>
