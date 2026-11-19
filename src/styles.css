@@ -249,6 +249,7 @@ button:disabled { opacity: .68; cursor: not-allowed; transform: none !important;
   .eyebrow-line { flex-shrink: 0; }
   h1, h2 { text-align: center; }
   .mobile-break { display: inline; }
+  .about-layout .section-heading h2 { font-size: min(51px, 7.4vw); white-space: nowrap; }
   .details-layout h2 { font-size: 44px; }
   .hero { min-height: auto; }
   .hero-inner { grid-template-columns: 1fr; }
