@@ -246,7 +246,7 @@ export default function App() {
 
         <section id="nations" className="nations-section section-pad">
           <div className="content-width">
-            <SectionHeader title={<>Dressed for <span className="highlight-word">the occasion.</span></>} body="Every player suits up in a country-themed tournament jersey with matching socks and the Four Nations emblem, designed for this event and theirs to keep long after the last game." light />
+            <SectionHeader title={<>Dressed for <br className="mobile-break" /><span className="highlight-word">the occasion.</span></>} body="Every player suits up in a country-themed tournament jersey with matching socks and the Four Nations emblem, designed for this event and theirs to keep long after the last game." light />
             <div className="nations-grid">
               {nations.map((nation) => (
                 <article className="nation-card" key={nation.name} style={{ '--nation-accent': nation.color }}>
