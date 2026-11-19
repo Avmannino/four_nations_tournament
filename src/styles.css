@@ -257,7 +257,8 @@ button:disabled { opacity: .68; cursor: not-allowed; transform: none !important;
   .hero h1 { font-size: clamp(40px, 13vw, 82px); margin: 19px 0 22px; }
   .hero-copy > p { max-width: 450px; margin-inline: auto; text-align: center; font-size: 15px; line-height: 1.75; }
   .hero-actions { margin: 24px 0 0; }
-  .hero-actions .button { flex: 1 1 180px; padding: 14px 10px; font-size: 14px; }
+  .hero-actions { justify-content: center; }
+  .hero-actions .button { flex: 0 1 260px; padding: 14px 10px; font-size: 14px; }
   .hero-visual { order: -1; padding: 48px 0 0; translate: none; }
   .hero-logo { width: min(62%, 240px); max-height: none; }
   .details-bar { padding: 28px 0; }
