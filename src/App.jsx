@@ -1,3 +1,4 @@
+import { useId, useState } from 'react';
 import {
   ArrowDown,
   ArrowRight,
@@ -64,7 +65,7 @@ const nations = [
 ];
 
 const experience = [
-  { icon: Trophy, title: 'Five guaranteed games', text: 'Three round-robin games, a semifinal, and a medal game. Meaningful hockey from the first puck drop to the last.' },
+  { icon: Trophy, title: '5 guaranteed games', text: '3 round-robin games, a semifinal, and a medal game. Meaningful hockey from the first puck drop to the last.' },
   { icon: Clock3, title: 'A true team practice', text: 'A 50-minute half-ice session with your team and coach to build chemistry and sharpen the details.' },
   { icon: Shirt, title: 'Custom tournament uniform', text: 'A country-themed jersey and matching socks to keep. Pay in full by June 1, 2027 to get your name and number.' },
   { icon: Gift, title: 'Player extras', text: 'A player gift bag, plus Player of the Game awards throughout the tournament.' },
@@ -83,15 +84,15 @@ const faqs = [
   },
   {
     q: 'What birth years and skill level are eligible?',
-    a: 'The tournament is for invited local 2016 AA and 2017 AA players. Each birth-year division has four country-themed teams of 15 players (8 forwards, 5 defense, and 2 goalies): USA, Canada, Finland, and Sweden.',
+    a: 'The tournament is for invited local 2016 AA and 2017 AA players. Each birth-year division has 4 country-themed teams of 15 players (8 forwards, 5 defense, and 2 goalies): USA, Canada, Finland, and Sweden.',
   },
   {
     q: 'Who coaches the teams?',
-    a: 'Every team has its own dedicated coach, eight in all. Our coaches are focused on teaching the game: building skills, reinforcing good habits, and helping every player improve over the course of the weekend.',
+    a: 'Every team has its own dedicated coach, 8 in all. Our coaches are focused on teaching the game: building skills, reinforcing good habits, and helping every player improve over the course of the weekend.',
   },
   {
     q: 'What does the player fee include?',
-    a: 'The player fee is $425, paid in full at registration. It covers five games, a 50-minute half-ice team practice, a jersey and socks to keep, a player gift bag, Player of the Game awards, and gold, silver, and bronze medals.',
+    a: 'The player fee is $425, paid in full at registration. It covers 5 games, a 50-minute half-ice team practice, a jersey and socks to keep, a player gift bag, Player of the Game awards, and gold, silver, and bronze medals.',
   },
   {
     q: 'What if my player needs to withdraw?',
@@ -121,6 +122,22 @@ function SectionHeader({ eyebrow, title, body, light = false }) {
       {eyebrow && <p className="eyebrow"><span className="eyebrow-line" />{eyebrow}</p>}
       <h2>{title}</h2>
       {body && <p className="section-intro">{body}</p>}
+    </div>
+  );
+}
+
+// Accordion row: animates open/closed by transitioning grid rows from 0fr to 1fr.
+function FaqItem({ q, a }) {
+  const [open, setOpen] = useState(false);
+  const id = useId();
+  return (
+    <div className={`faq-item${open ? ' is-open' : ''}`}>
+      <button type="button" className="faq-question" aria-expanded={open} aria-controls={id} onClick={() => setOpen((v) => !v)}>
+        {q}<span className="faq-plus" aria-hidden="true">+</span>
+      </button>
+      <div className="faq-answer" id={id} inert={!open}>
+        <div className="faq-answer-inner"><p>{a}</p></div>
+      </div>
     </div>
   );
 }
@@ -189,7 +206,7 @@ export default function App() {
           <div className="content-width hero-inner">
             <div className="hero-copy">
               <h1>THE ROAD TO GOLD<br /><em>STARTS HERE.</em><br /></h1>
-              <p>An invitation-only tournament for 2016 and 2017 AA players: five competitive games, coaches who teach the game, and a weekend your player will be talking about all season.</p>
+              <p>An invitation-only tournament for 2016 and 2017 AA players: 5 competitive games, coaches who teach the game, and a weekend your player will be talking about all season.</p>
               <div className="hero-actions">
                 <a className="button button--red" {...registerLinkProps}>Register Here <ArrowRight size={18} /></a>
               </div>
@@ -215,8 +232,8 @@ export default function App() {
         <section id="about" className="about-section section-pad">
           <div className="content-width about-layout">
             <div>
-              <SectionHeader eyebrow="THE TOURNAMENT" title={<>Compete with purpose.<br /><span className="highlight-word">Develop with every shift.</span></>} body="A selective, three-day event for invited local 2016 and 2017 AA players, built around meaningful games and real instruction, and designed to send every player home better than they arrived." />
-              <p className="about-prose">The Four Nations format places invited local AA players on one of four country-themed teams (USA, Canada, Finland, or Sweden) within their birth-year division. The theme gives the weekend its identity; the hockey gives it its purpose. Every team practices together, plays a full round-robin schedule, and competes through a semifinal and medal game, with a dedicated coach teaching the game from the first practice to the final whistle.</p>
+              <SectionHeader eyebrow="THE TOURNAMENT" title={<>Compete with purpose.<br /><span className="highlight-word">Develop with every shift.</span></>} body="A selective, 3-day event for invited local 2016 and 2017 AA players, built around meaningful games and real instruction, and designed to send every player home better than they arrived." />
+              <p className="about-prose">The Four Nations format places invited local AA players on 1 of 4 country-themed teams (USA, Canada, Finland, or Sweden) within their birth-year division. The theme gives the weekend its identity; the hockey gives it its purpose. Every team practices together, plays a full round-robin schedule, and competes through a semifinal and medal game, with a dedicated coach teaching the game from the first practice to the final whistle.</p>
               <div className="about-quickfacts"><div><Users size={22} /><span><strong>15 players per roster</strong><small>8 forwards · 5 defense · 2 goalies</small></span></div><div><ClipboardList size={22} /><span><strong>A dedicated coach for every team</strong><small>Teaching-focused, from practice through the medal round</small></span></div><div><MapPin size={22} /><span><strong>Wings Arena</strong><small>Stamford, Connecticut</small></span></div></div>
               <a href="#format" className="inline-link">See the tournament format <ArrowRight size={18} /></a>
             </div>
@@ -252,11 +269,11 @@ export default function App() {
 
         <section id="format" className="format-section section-pad">
           <div className="content-width format-layout">
-            <div className="format-copy"><SectionHeader eyebrow="TOURNAMENT FORMAT" title={<>Every game <span>counts.</span></>} body="It starts with a team practice. Then every team plays each opponent in its division before the bracket sets the semifinals and medal games: five guaranteed games, with something on the line in every one." light />
+            <div className="format-copy"><SectionHeader eyebrow="TOURNAMENT FORMAT" title={<>Every game <span>counts.</span></>} body="It starts with a team practice. Then every team plays each opponent in its division before the bracket sets the semifinals and medal games: 5 guaranteed games, with something on the line in every one." light />
               <div className="format-legend"><div><span className="legend-swatch legend-swatch--red" /> ROUND ROBIN</div><div><span className="legend-swatch legend-swatch--blue" /> PLAYOFFS</div><div><span className="legend-swatch legend-swatch--gold" /> MEDAL GAMES</div></div>
             </div>
-            <div className="format-steps"><div className="format-step"><span className="format-step-count">01</span><div><small>THE OPENING ROUNDS</small><h3>3 round-robin games</h3><p>Each team plays the other three in its division. Tiebreakers: head-to-head, then goal differential.</p></div><ChevronDown size={19} /></div><div className="format-step"><span className="format-step-count">02</span><div><small>THE FINAL FOUR</small><h3>1 semifinal game</h3><p>First place plays fourth; second place plays third.</p></div><ChevronDown size={19} /></div><div className="format-step"><span className="format-step-count">03</span><div><small>FOR THE MEDALS</small><h3>1 medal-placement game</h3><p>Semifinal winners play for gold and silver; the other two teams meet for bronze.</p></div><Trophy size={23} /></div></div>
-            <div className="overtime-note"><Clock3 size={20} /><div><strong>Overtime rules</strong><p>Round robin: five minutes of 3-on-3, then a shootout. Semifinals and medal games: continuous 3-on-3 until a winner. Game length and remaining rules will be shared before the event.</p></div></div>
+            <div className="format-steps"><div className="format-step"><span className="format-step-count">01</span><div><small>THE OPENING ROUNDS</small><h3>3 round-robin games</h3><p>Each team plays the other 3 in its division. Tiebreakers: head-to-head, then goal differential.</p></div><ChevronDown size={19} /></div><div className="format-step"><span className="format-step-count">02</span><div><small>THE FINAL FOUR</small><h3>1 semifinal game</h3><p>1st place plays 4th; 2nd place plays 3rd.</p></div><ChevronDown size={19} /></div><div className="format-step"><span className="format-step-count">03</span><div><small>FOR THE MEDALS</small><h3>1 medal-placement game</h3><p>Semifinal winners play for gold and silver; the other 2 teams meet for bronze.</p></div><Trophy size={23} /></div></div>
+            <div className="overtime-note"><Clock3 size={20} /><div><strong>Overtime rules</strong><p>Round robin: 5 minutes of 3-on-3, then a shootout. Semifinals and medal games: continuous 3-on-3 until a winner. Game length and remaining rules will be shared before the event.</p></div></div>
           </div>
         </section>
 
@@ -264,10 +281,10 @@ export default function App() {
 
         <Registration />
 
-        <section id="faq" className="faq-section section-pad"><div className="content-width faq-layout"><div><SectionHeader eyebrow="GOOD TO KNOW" title={<>Frequently asked<br /><span className="highlight-word">questions.</span></>} /></div><div className="faq-list">{faqs.map((item) => <details key={item.q}><summary>{item.q}<span className="faq-plus">+</span></summary><p>{item.a}</p></details>)}</div></div></section>
+        <section id="faq" className="faq-section section-pad"><div className="content-width faq-layout"><div><SectionHeader eyebrow="GOOD TO KNOW" title={<>Frequently asked<br /><span className="highlight-word">questions.</span></>} /></div><div className="faq-list">{faqs.map((item) => <FaqItem key={item.q} q={item.q} a={item.a} />)}</div></div></section>
       </main>
 
-      <footer className="footer"><div className="content-width footer-main"><div className="footer-brand"><img src={logo} alt="Future Stars Four Nations logo" /><div><strong>FUTURE STARS</strong><span>FOUR NATIONS YOUTH GAMES</span></div></div><div className="footer-location"><MapPin size={19} /><span>Wings Arena · Stamford, Connecticut<br />August 6–8, 2027<br /><a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a></span></div><a href="#top" className="back-to-top">BACK TO TOP <ArrowDown size={18} /></a></div><div className="content-width footer-bottom"><span>© {new Date().getFullYear()} Future Stars Four Nations Youth Games</span><span>Invitation-only tournament hosted at Wings Arena · Event details subject to change</span></div></footer>
+      <footer className="footer"><div className="content-width footer-main"><div className="footer-brand"><img src={logo} alt="Future Stars Four Nations Youth Games logo" /></div><div className="footer-location"><MapPin size={19} /><span>Wings Arena · Stamford, Connecticut<br />August 6–8, 2027<br /><a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a></span></div><a href="#top" className="back-to-top">BACK TO TOP <ArrowDown size={18} /></a></div><div className="content-width footer-bottom"><span>© {new Date().getFullYear()} </span><span>Event details subject to change</span></div></footer>
     </>
   );
 }
