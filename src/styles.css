@@ -252,14 +252,14 @@ button:disabled { opacity: .68; cursor: not-allowed; transform: none !important;
   .about-layout .section-heading h2 { font-size: min(51px, calc((100vw - 36px) / 9.3)); white-space: nowrap; }
   .details-layout h2 { font-size: 44px; }
   .hero { min-height: auto; }
-  .hero-inner { grid-template-columns: 1fr; }
-  .hero-copy { padding: 8px 0 40px; }
-  .hero h1 { font-size: clamp(40px, 13vw, 82px); margin: 22px 0; }
+  .hero-inner { grid-template-columns: 1fr; gap: 0; }
+  .hero-copy { padding: 0 0 40px; }
+  .hero h1 { font-size: clamp(40px, 13vw, 82px); margin: 10px 0 22px; }
   .hero-copy > p { max-width: 450px; font-size: 14px; }
   .hero-actions { margin: 24px 0 0; }
   .hero-actions .button { flex: 1 1 180px; padding: 14px 10px; font-size: 14px; }
-  .hero-visual { order: -1; padding: 36px 40px 0; translate: none; }
-  .hero-logo { max-height: 340px; }
+  .hero-visual { order: -1; padding: 28px 0 0; translate: none; }
+  .hero-logo { width: min(62%, 240px); max-height: none; }
   .details-bar { padding: 28px 0; }
   .details-grid { gap: 10px; }
   .details-item { padding: 14px 14px 16px; gap: 6px; }
