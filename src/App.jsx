@@ -76,7 +76,7 @@ const experience = [
 const faqs = [
   {
     q: 'Can any player register?',
-    a: 'No. The Four Nations Youth Games is a selective, invitation-only event. Tournament director Jake Hewitt selects each player and sends an individual invitation with private registration instructions. There is no public registration or waitlist.',
+    a: 'No. The Four Nations Youth Games is a selective, invitation-only event. The Tournament Director selects each player and sends an individual invitation with private registration instructions. There is no public registration or waitlist.',
   },
   {
     q: 'Are players representing their home countries?',
@@ -150,8 +150,8 @@ function Registration() {
           <p className="eyebrow eyebrow--yellow"><span className="eyebrow-line" />INVITED PLAYERS</p>
           <h2>Got the invite?<br /><span>Lock in your spot.</span></h2>
           <p>
-            Every invited player receives an individual invitation from tournament director
-            Jake Hewitt, along with private registration instructions.
+            Every invited player receives an individual invitation from the Tournament Director,
+            along with private registration instructions.
           </p>
           <div className="registration-highlights">
             <div><ShieldCheck size={21} /><span>Personal invitations only</span></div>
