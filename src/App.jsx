@@ -284,7 +284,7 @@ export default function App() {
         <section id="faq" className="faq-section section-pad"><div className="content-width faq-layout"><div><SectionHeader eyebrow="GOOD TO KNOW" title={<>Frequently asked<br /><span className="highlight-word">questions.</span></>} /></div><div className="faq-list">{faqs.map((item) => <FaqItem key={item.q} q={item.q} a={item.a} />)}</div></div></section>
       </main>
 
-      <footer className="footer"><div className="content-width footer-main"><div className="footer-brand"><img src={logo} alt="Future Stars Four Nations Youth Games logo" /></div><div className="footer-location"><MapPin size={19} /><span>Wings Arena · Stamford, Connecticut<br />August 6–8, 2027<br /><a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a></span></div><a href="#top" className="back-to-top">BACK TO TOP <ArrowDown size={18} /></a></div><div className="content-width footer-bottom"><span>© {new Date().getFullYear()} </span><span>Event details subject to change</span></div></footer>
+      <footer className="footer"><div className="content-width footer-main"><div className="footer-brand"><img src={logo} alt="Future Stars Four Nations Youth Games logo" /></div><div className="footer-location"><MapPin size={19} /><span>Wings Arena · Stamford, Connecticut<br />August 6–8, 2027<br /><a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a></span></div><a href="#top" className="back-to-top">BACK TO TOP <ArrowDown size={18} /></a></div><div className="content-width footer-bottom"><span>© 2026 Wings Arena</span><span>Event details subject to change</span></div></footer>
     </>
   );
 }
