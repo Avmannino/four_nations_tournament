@@ -127,11 +127,6 @@ button:disabled { opacity: .68; cursor: not-allowed; transform: none !important;
 .format-section { background: #0a2141; color: white; }
 .format-layout { display: grid; grid-template-columns: .75fr 1.25fr; gap: 40px 80px; }
 .format-copy .section-heading h2 span { color: #f04658; }
-.format-legend { display: grid; gap: 14px; margin-top: 34px; color: #b8c7dd; font-size: 13px; font-weight: 800; letter-spacing: .08em; }
-.format-legend > div { display: flex; align-items: center; gap: 10px; }
-.legend-swatch { height: 10px; width: 10px; background: #f24358; border-radius: 50%; }
-.legend-swatch--blue { background: #55aff5; }
-.legend-swatch--gold { background: #ffd15e; }
 .format-steps { display: grid; gap: 10px; }
 .format-step { display: grid; grid-template-columns: 59px 1fr 24px; gap: 20px; align-items: center; border: 1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.04); padding: 22px 21px; border-radius: 4px; }
 .format-step:nth-child(2) { background: rgba(55,123,190,.1); }
@@ -230,7 +225,6 @@ button:disabled { opacity: .68; cursor: not-allowed; transform: none !important;
   .experience-grid { grid-template-columns: 1fr 1fr; }
   .format-layout { grid-template-columns: 1fr; }
   .overtime-note { grid-column: 1; }
-  .format-legend { display: flex; flex-wrap: wrap; }
   .details-layout { grid-template-columns: 1fr; gap: 28px; }
   .registration-layout { grid-template-columns: 1fr; }
   .registration-card { translate: none; }
