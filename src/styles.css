@@ -254,7 +254,7 @@ button:disabled { opacity: .68; cursor: not-allowed; transform: none !important;
   .hero { min-height: auto; }
   .hero-inner { grid-template-columns: 1fr; gap: 0; min-height: auto; }
   .hero-copy { padding: 0 0 40px; }
-  .hero h1 { font-size: clamp(40px, 13vw, 82px); margin: 4px 0 22px; }
+  .hero h1 { font-size: clamp(40px, 13vw, 82px); margin: 9px 0 22px; }
   .hero-copy > p { max-width: 450px; font-size: 14px; }
   .hero-actions { margin: 24px 0 0; }
   .hero-actions .button { flex: 1 1 180px; padding: 14px 10px; font-size: 14px; }
