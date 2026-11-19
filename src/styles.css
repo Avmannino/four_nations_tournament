@@ -246,6 +246,8 @@ button:disabled { opacity: .68; cursor: not-allowed; transform: none !important;
   .eyebrow { justify-content: center; text-align: center; }
   .eyebrow::after { content: ''; display: inline-block; height: 2px; width: 26px; background: currentColor; flex-shrink: 0; }
   .eyebrow-line { flex-shrink: 0; }
+  h1, h2 { text-align: center; }
+  .details-layout h2 { font-size: 44px; }
   .hero { min-height: auto; }
   .hero-inner { grid-template-columns: 1fr; }
   .hero-copy { padding: 8px 0 40px; }
