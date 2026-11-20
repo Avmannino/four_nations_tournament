@@ -203,19 +203,7 @@ export default function App() {
 
       <main id="top">
         <section className="hero">
-          <div className="content-width hero-inner">
-            <div className="hero-copy">
-              <h1>THE ROAD TO GOLD<br /><em>STARTS HERE.</em><br /></h1>
-              <p>An invitation-only tournament for 2016 and 2017 AA players: 5 competitive games, coaches who teach the game, and a weekend your player will be talking about all season.</p>
-              <div className="hero-actions">
-                <a className="button button--red" {...registerLinkProps}>Register Here <ArrowRight size={18} /></a>
-              </div>
-            </div>
-            <div className="hero-visual">
-              <div className="hero-logo-halo" />
-              <img src={logo} alt="Future Stars Four Nations Youth Games tournament logo" className="hero-logo" />
-            </div>
-          </div>
+          <h1 className="sr-only">Future Stars Four Nations Youth Games: August 6–8, 2027 at Wings Arena, Stamford, Connecticut</h1>
         </section>
 
         <section className="details-bar" aria-label="Tournament at a glance">
