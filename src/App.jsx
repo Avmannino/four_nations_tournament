@@ -2,27 +2,23 @@ import { useId, useState } from 'react';
 import {
   ArrowDown,
   ArrowRight,
+  ArrowUpRight,
   Award,
   Check,
-  ChevronDown,
-  ClipboardList,
-  Clock3,
-  CreditCard,
   Gift,
   LockKeyhole,
   MapPin,
   Medal,
-  ShieldCheck,
-  Shirt,
   Sparkles,
-  Trophy,
-  Users,
 } from 'lucide-react';
 import logo from './assets/four-nations-logo.png';
 import usaJersey from './assets/usa-jersey.png';
 import canadaJersey from './assets/canada-jersey.png';
 import finlandJersey from './assets/finland-jersey.png';
 import swedenJersey from './assets/sweden-jersey.png';
+import jakeThibeaultPhoto from './assets/jake.jpg';
+import wingsLogo from './assets/wings-logo.png';
+import coastalLogo from './assets/coastal-logo.png';
 import { CanadaFlag, FinlandFlag, SwedenFlag, UsaFlag } from './flags';
 
 const CONTACT_EMAIL = import.meta.env.VITE_EVENT_CONTACT_EMAIL?.trim() || 'tournament@wingsarena.com';
@@ -64,13 +60,42 @@ const nations = [
   },
 ];
 
+// Confirmed coaches. Cards render only when this list has entries.
+// To add one: put a headshot in src/assets, import it above, and add an entry like:
+// { name: 'Coach Name', role: 'Former NCAA Division I defenseman', photo: coachPhoto, bio: 'Short bio…' },
+const coaches = [];
+
+const specialGuest = {
+  name: 'Jake Thibeault',
+  role: 'Guest speaker · Opening ceremony & seminar',
+  photo: jakeThibeaultPhoto,
+  // Story drawn from Babson Athletics, Babson Magazine, and Boston news coverage. Have Jake review before launch.
+  bio: [
+    'A Fitchburg, Massachusetts native, Jake Thibeault was a senior playing hockey for Milton Academy when an on-ice collision on September 4, 2021 left him with two broken vertebrae and partial paralysis.',
+    'Jake refused to let the injury define him. He went on to Babson College and became an inspiration to the Babson men’s hockey program while continuing to work toward his goal of walking again. In fall 2025, Babson opened its season with a two-game series against Fitchburg State held in his honor.',
+    'Jake will share his story during the opening ceremony and lead a seminar during the tournament weekend.',
+  ],
+  website: 'https://entrepreneurship.babson.edu/jake-thibeault-more-than-hockey/',
+};
+
+const schedule = [
+  { day: 'Friday', date: 'AUG 6', label: 'OPENING DAY · AFTERNOON', color: '#ff5468', items: ['Team practices', 'Opening ceremony', 'Guest speaker Jake Thibeault', 'First round-robin games'] },
+  { day: 'Saturday', date: 'AUG 7', label: 'ROUND ROBIN', color: '#65b5fa', items: ['Round-robin games', 'Semifinal seeding set'] },
+  { day: 'Sunday', date: 'AUG 8', label: 'MEDAL DAY', color: '#ffd063', items: ['Semifinals', 'Gold & bronze medal games', 'Medal presentation'] },
+];
+
+const gameFormat = [
+  { label: 'ROUND ROBIN', items: ['Each team plays the other 3 in its division', 'Tiebreakers: head-to-head, then goal differential'] },
+  { label: 'SEMIFINALS', items: ['1st place vs. 4th place', '2nd place vs. 3rd place'] },
+  { label: 'MEDAL GAMES', items: ['Semifinal winners play for gold', 'The other 2 teams play for bronze'] },
+  { label: 'OVERTIME', items: ['Round robin: 5 min of 3-on-3, then a shootout', 'Semifinals & medal games: 3-on-3 until a winner'] },
+];
+
 const experience = [
-  { icon: Trophy, title: '5 guaranteed games', text: '3 round-robin games, a semifinal, and a medal game. Meaningful hockey from the first puck drop to the last.' },
-  { icon: Clock3, title: 'A true team practice', text: 'A 50-minute half-ice session with your team and coach to build chemistry and sharpen the details.' },
-  { icon: Shirt, title: 'Custom tournament uniform', text: 'A country-themed jersey and matching socks to keep. Pay in full by June 1, 2027 to get your name and number.' },
-  { icon: Gift, title: 'Player extras', text: 'A player gift bag, plus Player of the Game awards throughout the tournament.' },
-  { icon: Medal, title: 'A medal moment', text: 'Gold, silver, and bronze medals presented at the medal ceremony after the final games.' },
-  { icon: Sparkles, title: 'Beyond the rink', text: 'An outdoor activity area with music, Spikeball, cornhole, and KanJam running alongside the games.' },
+  { icon: Gift, title: 'Player gift bag', text: 'Every player takes home a tournament gift bag.' },
+  { icon: Award, title: 'Player of the Game', text: 'Standout performances recognized throughout the tournament.' },
+  { icon: Medal, title: 'Gold, silver & bronze', text: 'Medals for the top 3 teams in each division.' },
+  { icon: Sparkles, title: 'Beyond the rink', text: 'Music, Spikeball, cornhole, and KanJam in the outdoor activity area between games.' },
 ];
 
 const faqs = [
@@ -88,7 +113,7 @@ const faqs = [
   },
   {
     q: 'Who coaches the teams?',
-    a: 'Every team has its own dedicated coach, 8 in all. Our coaches are focused on teaching the game: building skills, reinforcing good habits, and helping every player improve over the course of the weekend.',
+    a: 'Teams are coached by a highly qualified staff, including former NCAA Division I players. Our coaches are focused on teaching the game: building skills, reinforcing good habits, and helping every player improve over the course of the weekend.',
   },
   {
     q: 'What does the player fee include?',
@@ -100,7 +125,7 @@ const faqs = [
   },
   {
     q: 'Will jerseys include my player’s name and number?',
-    a: 'Yes, for players paid in full by June 1, 2027. Those players receive a jersey with their requested name and number. Sizes and numbers are subject to supplier availability.',
+    a: 'Name and number details, including the ordering deadline, are still being finalized with our supplier. We’ll share them with registered families once confirmed.',
   },
   {
     q: 'Can family and friends watch?',
@@ -122,6 +147,16 @@ function SectionHeader({ eyebrow, title, body, light = false }) {
       {eyebrow && <p className="eyebrow"><span className="eyebrow-line" />{eyebrow}</p>}
       <h2>{title}</h2>
       {body && <p className="section-intro">{body}</p>}
+    </div>
+  );
+}
+
+// Shows a person's photo, or their initials until a photo is supplied.
+function Headshot({ name, photo, className }) {
+  const initials = name.split(' ').map((part) => part[0]).join('').slice(0, 2);
+  return (
+    <div className={className}>
+      {photo ? <img src={photo} alt={name} /> : <span aria-hidden="true">{initials}</span>}
     </div>
   );
 }
@@ -153,15 +188,6 @@ function Registration() {
             Every invited player receives an individual invitation from the Tournament Director,
             along with private registration instructions.
           </p>
-          <div className="registration-highlights">
-            <div><ShieldCheck size={21} /><span>Personal invitations only</span></div>
-            <div><CreditCard size={21} /><span>$425 per player · paid in full</span></div>
-            <div><Shirt size={21} /><span>Pay by June 1, 2027 for a name &amp; number jersey</span></div>
-          </div>
-          <p className="registration-fineprint">
-            Registration is private and not open to the public. Your invitation includes
-            your registration instructions.
-          </p>
         </div>
 
         <div className="registration-card">
@@ -179,18 +205,11 @@ function Registration() {
             <li><Check size={18} />Requested jersey name and number</li>
             <li><Check size={18} />Jersey and sock sizes</li>
           </ul>
-          <div className="registration-terms">
-            <strong>Registration terms</strong>
-            <p>Payment of $425 in full secures your player’s place. Player withdrawals are nonrefundable. If Wings Arena cancels the event, registered families receive a full refund.</p>
-          </div>
           {REGISTER_URL ? (
             <a className="button button--red button--full" {...registerLinkProps}>Continue to registration <ArrowRight size={18} /></a>
           ) : (
             <span className="button button--full button--pending">Registration link coming soon</span>
           )}
-          <p className="registration-disclaimer">
-            Questions about your invitation? Email <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
-          </p>
         </div>
       </div>
     </section>
@@ -206,24 +225,28 @@ export default function App() {
           <h1 className="sr-only">Future Stars Four Nations Youth Games: August 6–8, 2027 at Wings Arena, Stamford, Connecticut</h1>
         </section>
 
-        <section className="details-bar" aria-label="Tournament at a glance">
-          <div className="content-width">
-            <dl className="details-grid">
-              <div className="details-item"><dt>DATES</dt><dd>August 6–8, 2027</dd></div>
-              <div className="details-item"><dt>DIVISIONS</dt><dd>2016 &amp; 2017 AA</dd></div>
-              <div className="details-item"><dt>FORMAT</dt><dd>1 practice · 5 games</dd></div>
-              <div className="details-item"><dt>PLAYER FEE</dt><dd>$425 per player</dd></div>
-            </dl>
+        <section className="cta-bar" aria-label="Player registration">
+          <div className="content-width cta-layout">
+            <img src={wingsLogo} alt="Wings Arena" className="partner-logo partner-logo--wings" />
+            <div className="cta-card">
+              <div className="cta-copy">
+                <h2>One step closer to game day.</h2>
+                <p>Invited players can complete their registration using the link below to secure their place in the Future Stars Four Nations Youth Games.</p>
+                <a className="button button--red button--cta" {...registerLinkProps}>Access registration <ArrowUpRight size={18} /></a>
+              </div>
+            </div>
+            <div className="cta-partner">
+              <span className="cta-partner-label">In partnership with</span>
+              <img src={coastalLogo} alt="Coastal Elite" className="partner-logo partner-logo--coastal" />
+            </div>
           </div>
         </section>
 
         <section id="about" className="about-section section-pad">
           <div className="content-width about-layout">
             <div>
-              <SectionHeader eyebrow="THE TOURNAMENT" title={<>Compete with purpose.<br /><span className="highlight-word">Develop with every shift.</span></>} body="A selective, 3-day event for invited local 2016 and 2017 AA players, built around meaningful games, real instruction, and designed to send every player home better than when they arrived." />
-              <p className="about-prose">The Four Nations format places invited local AA players on 1 of 4 country-themed teams (USA, Canada, Finland, or Sweden) within their birth-year division. Every team practices together, plays a full round-robin schedule, and competes through a semifinal and medal game, with a dedicated coach teaching the game from the first practice to the final whistle.</p>
-              <div className="about-quickfacts"><div><Users size={22} /><span><strong>15 players per roster</strong><small>8 forwards · 5 defense · 2 goalies</small></span></div><div><ClipboardList size={22} /><span><strong>A dedicated coach for every team</strong><small>Teaching-focused, from practices through to the medal round</small></span></div><div><MapPin size={22} /><span><strong>Wings Arena</strong><small>5 Barry Pl., Stamford, CT</small></span></div></div>
-              <a href="#format" className="inline-link">See the tournament format <ArrowRight size={18} /></a>
+              <SectionHeader eyebrow="THE TOURNAMENT" title={<>Compete with purpose.<br /><span className="highlight-word">Develop with every shift.</span></>} body="An invitation-only weekend for local 2016 and 2017 AA players, built around meaningful games and real instruction, and designed to send every player home a better hockey player." />
+              <a href="#format" className="inline-link">See the weekend schedule <ArrowRight size={18} /></a>
             </div>
             <div className="about-showcase">
               <div className="showcase-card showcase-card--one"><span className="showcase-label">DIVISION 01 AA</span><div className="showcase-year"><strong>2016</strong><span>BIRTH YEAR</span></div></div>
@@ -232,9 +255,30 @@ export default function App() {
           </div>
         </section>
 
+        <section id="coaches" className="coaches-section section-pad">
+          <div className="content-width">
+            <div className="coaches-layout">
+              <SectionHeader eyebrow="THE COACHES" title={<>Coaches who <br className="mobile-break" /><span className="highlight-word">teach the game.</span></>} />
+              <p className="coaches-intro">Teams are coached by a highly qualified staff, including former NCAA Division I players, who put teaching first: building skills, reinforcing good habits, and helping every player improve over the weekend.</p>
+            </div>
+            {coaches.length > 0 && (
+              <div className="coach-grid">
+                {coaches.map((coach) => (
+                  <article className="coach-card" key={coach.name}>
+                    <Headshot name={coach.name} photo={coach.photo} className="coach-photo" />
+                    <h3>{coach.name}</h3>
+                    <p className="coach-role">{coach.role}</p>
+                    <p>{coach.bio}</p>
+                  </article>
+                ))}
+              </div>
+            )}
+          </div>
+        </section>
+
         <section id="nations" className="nations-section section-pad">
           <div className="content-width">
-            <SectionHeader title={<>Dressed for <br className="mobile-break" /><span className="highlight-word">the occasion.</span></>} body="Every player suits up in a country-themed tournament jersey with matching socks and the Four Nations emblem, designed for this event and theirs to keep long after the last game." light />
+            <SectionHeader title={<>Wear one of the Four Nations <br className="mobile-break" /><span className="highlight-word">team colors.</span></>} body="Every player is assigned to 1 of 4 teams and receives that team’s custom jersey and matching socks to keep." light />
             <div className="nations-grid">
               {nations.map((nation) => (
                 <article className="nation-card" key={nation.name} style={{ '--nation-accent': nation.color }}>
@@ -249,29 +293,64 @@ export default function App() {
 
         <section id="experience" className="experience-section section-pad">
           <div className="content-width">
-            <div className="experience-top"><SectionHeader eyebrow="THE FULL EXPERIENCE" title={<>Not your average <br className="mobile-break" /><span className="highlight-word">tournament weekend.</span></>} body="Big games, real coaching, and plenty of fun in between. Here’s what’s included for every player." /><div className="fee-badge"><span>PLAYER FEE</span><strong>$425<small>/ player</small></strong><span>COVERS THE FULL PLAYER EXPERIENCE</span></div></div>
+            <div className="experience-top"><SectionHeader eyebrow="THE FULL EXPERIENCE" title={<>The little <span className="highlight-word">extras</span></>} /></div>
             <div className="experience-grid">{experience.map((item) => { const Icon = item.icon; return <article className="experience-card" key={item.title}><div className="experience-card-top"><span className="experience-icon"><Icon size={23} strokeWidth={1.9} /></span></div><h3>{item.title}</h3><p>{item.text}</p></article>; })}</div>
-            <div className="event-callout"><div className="callout-icon"><Award size={30} /></div><div><span>SPECIAL GUEST · SPEAKER &amp; SEMINAR</span><strong>Jake Thibeault</strong><p>Jake headlines the opening ceremony, alongside team introductions and flags, and leads a seminar during the tournament weekend.</p></div><a href="#faq" className="callout-link">EVENT DETAILS <ArrowRight size={18} /></a></div>
           </div>
         </section>
 
         <section id="format" className="format-section section-pad">
-          <div className="content-width format-layout">
-            <div className="format-copy"><SectionHeader eyebrow="TOURNAMENT FORMAT" title={<>Every game <span>counts.</span></>} body="It starts with a team practice. Then every team plays each opponent in its division before the bracket sets the semifinals and medal games: 5 guaranteed games, with something on the line in every one." light />
+          <div className="content-width">
+            <div className="format-copy"><SectionHeader eyebrow="SCHEDULE & FORMAT" title={<>Every game <span>counts.</span></>} body="1 team practice and 5 guaranteed games over 3 days, with something on the line in every one." light /></div>
+            <div className="schedule-grid">
+              {schedule.map((item) => (
+                <article className="day-card" key={item.day} style={{ '--day-color': item.color }}>
+                  <div className="day-card-head">
+                    <span className="day-date">{item.date}</span>
+                    <h3 className="day-name">{item.day}</h3>
+                    <small className="day-label">{item.label}</small>
+                  </div>
+                  <ul className="day-list">{item.items.map((entry) => <li key={entry}>{entry}</li>)}</ul>
+                </article>
+              ))}
             </div>
-            <div className="format-steps"><div className="format-step"><span className="format-step-count">01</span><div><small>THE OPENING ROUNDS</small><h3>3 round-robin games</h3><p>Each team plays the other 3 in its division. Tiebreakers: head-to-head, then goal differential.</p></div><ChevronDown size={19} /></div><div className="format-step"><span className="format-step-count">02</span><div><small>THE FINAL FOUR</small><h3>1 semifinal game</h3><p>1st place plays 4th; 2nd place plays 3rd.</p></div><ChevronDown size={19} /></div><div className="format-step"><span className="format-step-count">03</span><div><small>FOR THE MEDALS</small><h3>1 medal-placement game</h3><p>Semifinal winners play for gold and silver; the other 2 teams meet for bronze.</p></div><Trophy size={23} /></div></div>
-            <div className="overtime-note"><Clock3 size={20} /><div><strong>Overtime rules</strong><p>Round robin: 5 minutes of 3-on-3, then a shootout. Semifinals and medal games: continuous 3-on-3 until a winner. Game length and remaining rules will be shared before the event.</p></div></div>
+            <div className="format-rules">
+              <div className="format-rules-head">
+                <h3>Game format</h3>
+                <p className="format-note">Game length will be confirmed before the event.</p>
+              </div>
+              <div className="rules-grid">
+                {gameFormat.map((rule) => (
+                  <div className="rule" key={rule.label}>
+                    <h4>{rule.label}</h4>
+                    <ul>{rule.items.map((entry) => <li key={entry}>{entry}</li>)}</ul>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </section>
 
-        <section className="details-strip"><div className="content-width details-layout"><div><p className="eyebrow"><span className="eyebrow-line" /> THE WEEKEND</p><h2>OFF THE ICE,<br /><span>THE FUN CONTINUES.</span></h2></div><div className="details-items"><div><Check size={20} /><span>Free spectator admission</span></div><div><Check size={20} /><span>Opening ceremony</span></div><div><Check size={20} /><span>Seminar with Jake Thibeault</span></div><div><Check size={20} /><span>Music &amp; outdoor games</span></div></div></div></section>
+        <section id="guest" className="guest-section">
+          <div className="content-width guest-layout">
+            <Headshot name={specialGuest.name} photo={specialGuest.photo} className="guest-photo" />
+            <div className="guest-copy">
+              <p className="eyebrow"><span className="eyebrow-line" />SPECIAL GUEST</p>
+              <h2>{specialGuest.name}</h2>
+              <p className="guest-role">{specialGuest.role}</p>
+              {specialGuest.bio.map((paragraph) => <p className="guest-bio" key={paragraph}>{paragraph}</p>)}
+              {specialGuest.website && (
+                <a className="guest-link" href={specialGuest.website} target="_blank" rel="noopener noreferrer">Read Jake’s story at Babson <ArrowRight size={18} /></a>
+              )}
+            </div>
+          </div>
+        </section>
 
         <Registration />
 
         <section id="faq" className="faq-section section-pad"><div className="content-width faq-layout"><div><SectionHeader eyebrow="GOOD TO KNOW" title={<>Frequently asked<br /><span className="highlight-word">questions.</span></>} /></div><div className="faq-list">{faqs.map((item) => <FaqItem key={item.q} q={item.q} a={item.a} />)}</div></div></section>
       </main>
 
-      <footer className="footer"><div className="content-width footer-main"><div className="footer-brand"><img src={logo} alt="Future Stars Four Nations Youth Games logo" /></div><div className="footer-location"><MapPin size={19} /><span>Wings Arena · Stamford, Connecticut<br />August 6–8, 2027<br /><a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a></span></div><a href="#top" className="back-to-top">BACK TO TOP <ArrowDown size={18} /></a></div><div className="content-width footer-bottom"><span>© 2026 Wings Arena</span><span>Event details subject to change</span></div></footer>
+      <footer className="footer"><div className="content-width footer-main"><div className="footer-brand"><img src={logo} alt="Future Stars Four Nations Youth Games logo" /></div><div className="footer-location"><MapPin size={19} /><span>Wings Arena · 5 Barry Pl., Stamford, CT<br />August 6–8, 2027<br /><a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a></span></div><a href="#top" className="back-to-top">BACK TO TOP <ArrowDown size={18} /></a></div><div className="content-width footer-bottom"><span>© 2026 Wings Arena</span><span>Event details subject to change</span></div></footer>
     </>
   );
 }
