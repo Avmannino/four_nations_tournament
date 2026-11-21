@@ -85,7 +85,8 @@ button:disabled { opacity: .68; cursor: not-allowed; transform: none !important;
 .showcase-card > .showcase-label { opacity: .8; font-size: 13px; }
 
 /* Coaches */
-.coaches-section { background: #f7f8fb; }
+.coaches-section { background: #dbe3ee; padding-top: 56px; }
+.about-section { padding-bottom: 56px; }
 .coaches-layout { display: grid; grid-template-columns: .9fr 1.1fr; gap: 60px; align-items: center; }
 .coaches-layout .section-heading h2 { margin-bottom: 0; }
 .coaches-intro { margin: 0; font-size: 18px; line-height: 1.8; color: #4a5a72; }
@@ -217,6 +218,8 @@ button:disabled { opacity: .68; cursor: not-allowed; transform: none !important;
 
 @media (max-width: 810px) {
   .section-pad { padding: 76px 0; }
+  .about-section { padding-bottom: 40px; }
+  .coaches-section { padding-top: 40px; }
   .about-layout, .faq-layout { grid-template-columns: 1fr; gap: 45px; }
   .nations-grid { grid-template-columns: 1fr 1fr; }
   .experience-top { align-items: flex-start; flex-direction: column; }

@@ -231,7 +231,7 @@ export default function App() {
             <div className="cta-card">
               <div className="cta-copy">
                 <h2>One step closer to game day.</h2>
-                <p>Invited players can complete their registration using the link below to secure their place in the Future Stars Four Nations Youth Games.</p>
+                <p>Invited players can complete their registration using the button below.</p>
                 <a className="button button--red button--cta" {...registerLinkProps}>Access registration <ArrowUpRight size={18} /></a>
               </div>
             </div>
@@ -293,7 +293,7 @@ export default function App() {
 
         <section id="experience" className="experience-section section-pad">
           <div className="content-width">
-            <div className="experience-top"><SectionHeader eyebrow="THE FULL EXPERIENCE" title={<>The little <span className="highlight-word">extras</span></>} /></div>
+            <div className="experience-top"><SectionHeader eyebrow="THE FULL EXPERIENCE" title={<>The little <span className="highlight-word">extras.</span></>} /></div>
             <div className="experience-grid">{experience.map((item) => { const Icon = item.icon; return <article className="experience-card" key={item.title}><div className="experience-card-top"><span className="experience-icon"><Icon size={23} strokeWidth={1.9} /></span></div><h3>{item.title}</h3><p>{item.text}</p></article>; })}</div>
           </div>
         </section>
