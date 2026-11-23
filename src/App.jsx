@@ -4,11 +4,11 @@ import {
   ArrowRight,
   ArrowUpRight,
   Award,
-  Check,
   Gift,
-  LockKeyhole,
+  Mail,
   MapPin,
   Medal,
+  Mic,
   Sparkles,
 } from 'lucide-react';
 import logo from './assets/four-nations-logo.png';
@@ -16,18 +16,16 @@ import usaJersey from './assets/usa-jersey.png';
 import canadaJersey from './assets/canada-jersey.png';
 import finlandJersey from './assets/finland-jersey.png';
 import swedenJersey from './assets/sweden-jersey.png';
-import jakeThibeaultPhoto from './assets/jake.jpg';
 import wingsLogo from './assets/wings-logo.png';
 import coastalLogo from './assets/coastal-logo.png';
+// Special guest section is commented out until the speaker is confirmed.
+// import jakeThibeaultPhoto from './assets/jake.jpg';
 import { CanadaFlag, FinlandFlag, SwedenFlag, UsaFlag } from './flags';
 
 const CONTACT_EMAIL = import.meta.env.VITE_EVENT_CONTACT_EMAIL?.trim() || 'tournament@wingsarena.com';
 // TODO: paste the registration link here once organizers provide it.
-// Until then, registration buttons scroll to the on-page registration section.
+// Until then, the registration button shows a disabled "coming soon" state.
 const REGISTER_URL = '';
-const registerLinkProps = REGISTER_URL
-  ? { href: REGISTER_URL, target: '_blank', rel: 'noopener noreferrer' }
-  : { href: '#register' };
 
 const nations = [
   {
@@ -65,6 +63,7 @@ const nations = [
 // { name: 'Coach Name', role: 'Former NCAA Division I defenseman', photo: coachPhoto, bio: 'Short bio…' },
 const coaches = [];
 
+/* Special guest: commented out until confirmed. Restore this, the photo import above, and the guest section below.
 const specialGuest = {
   name: 'Jake Thibeault',
   role: 'Guest speaker · Opening ceremony & seminar',
@@ -77,11 +76,12 @@ const specialGuest = {
   ],
   website: 'https://entrepreneurship.babson.edu/jake-thibeault-more-than-hockey/',
 };
+*/
 
 const schedule = [
-  { day: 'Friday', date: 'AUG 6', label: 'OPENING DAY · AFTERNOON', color: '#ff5468', items: ['Team practices', 'Opening ceremony', 'Guest speaker Jake Thibeault', 'First round-robin games'] },
-  { day: 'Saturday', date: 'AUG 7', label: 'ROUND ROBIN', color: '#65b5fa', items: ['Round-robin games', 'Semifinal seeding set'] },
-  { day: 'Sunday', date: 'AUG 8', label: 'MEDAL DAY', color: '#ffd063', items: ['Semifinals', 'Gold & bronze medal games', 'Medal presentation'] },
+  { day: 'Friday', date: 'AUG 6', label: 'OPENING DAY · AFTERNOON', color: '#e63b4e', items: ['Team practices', 'Opening ceremony', 'Guest speaker', 'First round-robin games'] },
+  { day: 'Saturday', date: 'AUG 7', label: 'ROUND ROBIN', color: '#2f7fd0', items: ['Round-robin games', 'Semifinal seeding set'] },
+  { day: 'Sunday', date: 'AUG 8', label: 'MEDAL DAY', color: '#b8860b', items: ['Semifinals', 'Gold & bronze medal games', 'Medal presentation'] },
 ];
 
 const gameFormat = [
@@ -92,6 +92,7 @@ const gameFormat = [
 ];
 
 const experience = [
+  { icon: Mic, title: 'Guest speaker', text: 'A featured guest speaker at Friday’s opening ceremony.' },
   { icon: Gift, title: 'Player gift bag', text: 'Every player takes home a tournament gift bag.' },
   { icon: Award, title: 'Player of the Game', text: 'Standout performances recognized throughout the tournament.' },
   { icon: Medal, title: 'Gold, silver & bronze', text: 'Medals for the top 3 teams in each division.' },
@@ -113,7 +114,7 @@ const faqs = [
   },
   {
     q: 'Who coaches the teams?',
-    a: 'Teams are coached by a highly qualified staff, including former NCAA Division I players. Our coaches are focused on teaching the game: building skills, reinforcing good habits, and helping every player improve over the course of the weekend.',
+    a: 'Teams will be led by qualified coaches with NCAA Division I, professional, and elite youth hockey experience. Our coaches are focused on teaching the game: building skills, reinforcing good habits, and helping every player improve over the course of the weekend.',
   },
   {
     q: 'What does the player fee include?',
@@ -177,44 +178,6 @@ function FaqItem({ q, a }) {
   );
 }
 
-function Registration() {
-  return (
-    <section id="register" className="registration-section">
-      <div className="content-width registration-layout">
-        <div className="registration-aside">
-          <p className="eyebrow eyebrow--yellow"><span className="eyebrow-line" />INVITED PLAYERS</p>
-          <h2>Got the invite?<br /><span>Lock in your spot.</span></h2>
-          <p>
-            Every invited player receives an individual invitation from the Tournament Director,
-            along with private registration instructions.
-          </p>
-        </div>
-
-        <div className="registration-card">
-          <div className="registration-card-head">
-            <span className="registration-lock"><LockKeyhole size={20} /></span>
-            <div>
-              <p className="small-kicker">INVITATION-ONLY ACCESS</p>
-              <h3>Player registration</h3>
-            </div>
-          </div>
-          <p className="registration-intro">Have these details ready before you start:</p>
-          <ul className="ready-list">
-            <li><Check size={18} />Your invitation and registration instructions</li>
-            <li><Check size={18} />Parent or guardian contact information</li>
-            <li><Check size={18} />Requested jersey name and number</li>
-            <li><Check size={18} />Jersey and sock sizes</li>
-          </ul>
-          {REGISTER_URL ? (
-            <a className="button button--red button--full" {...registerLinkProps}>Continue to registration <ArrowRight size={18} /></a>
-          ) : (
-            <span className="button button--full button--pending">Registration link coming soon</span>
-          )}
-        </div>
-      </div>
-    </section>
-  );
-}
 
 export default function App() {
   return (
@@ -232,7 +195,11 @@ export default function App() {
               <div className="cta-copy">
                 <h2>One step closer to game day.</h2>
                 <p>Invited players can complete their registration using the button below.</p>
-                <a className="button button--red button--cta" {...registerLinkProps}>Access registration <ArrowUpRight size={18} /></a>
+                {REGISTER_URL ? (
+                  <a className="button button--red button--cta" href={REGISTER_URL} target="_blank" rel="noopener noreferrer">Access registration <ArrowUpRight size={18} /></a>
+                ) : (
+                  <span className="button button--cta button--pending" aria-disabled="true">Registration link coming soon</span>
+                )}
               </div>
             </div>
             <div className="cta-partner">
@@ -258,8 +225,8 @@ export default function App() {
         <section id="coaches" className="coaches-section section-pad">
           <div className="content-width">
             <div className="coaches-layout">
-              <SectionHeader eyebrow="THE COACHES" title={<>Coaches who <br className="mobile-break" /><span className="highlight-word">teach the game.</span></>} />
-              <p className="coaches-intro">Teams are coached by a highly qualified staff, including former NCAA Division I players, who put teaching first: building skills, reinforcing good habits, and helping every player improve over the weekend.</p>
+              <SectionHeader eyebrow="THE COACHES" title={<>Experience <br className="mobile-break" /><span className="highlight-word">on the bench.</span></>} />
+              <p className="coaches-intro">Teams will be led by qualified coaches with NCAA Division I, professional, and elite youth hockey experience, bringing high-level knowledge, proven techniques, and a player-focused approach to every practice and game.</p>
             </div>
             {coaches.length > 0 && (
               <div className="coach-grid">
@@ -291,16 +258,9 @@ export default function App() {
           </div>
         </section>
 
-        <section id="experience" className="experience-section section-pad">
-          <div className="content-width">
-            <div className="experience-top"><SectionHeader eyebrow="THE FULL EXPERIENCE" title={<>The little <span className="highlight-word">extras.</span></>} /></div>
-            <div className="experience-grid">{experience.map((item) => { const Icon = item.icon; return <article className="experience-card" key={item.title}><div className="experience-card-top"><span className="experience-icon"><Icon size={23} strokeWidth={1.9} /></span></div><h3>{item.title}</h3><p>{item.text}</p></article>; })}</div>
-          </div>
-        </section>
-
         <section id="format" className="format-section section-pad">
           <div className="content-width">
-            <div className="format-copy"><SectionHeader eyebrow="SCHEDULE & FORMAT" title={<>Every game <span>counts.</span></>} body="1 team practice and 5 guaranteed games over 3 days, with something on the line in every one." light /></div>
+            <div className="format-copy"><SectionHeader title={<>Schedule &amp; <span>Format</span></>} body="1 team practice and 5 guaranteed games over 3 days." /></div>
             <div className="schedule-grid">
               {schedule.map((item) => (
                 <article className="day-card" key={item.day} style={{ '--day-color': item.color }}>
@@ -316,7 +276,7 @@ export default function App() {
             <div className="format-rules">
               <div className="format-rules-head">
                 <h3>Game format</h3>
-                <p className="format-note">Game length will be confirmed before the event.</p>
+                <p className="format-note">Period length will be confirmed before the event.</p>
               </div>
               <div className="rules-grid">
                 {gameFormat.map((rule) => (
@@ -330,6 +290,14 @@ export default function App() {
           </div>
         </section>
 
+        <section id="experience" className="experience-section section-pad">
+          <div className="content-width">
+            <div className="experience-top"><SectionHeader eyebrow="BEYOND THE GAME" title={<>The little <span className="highlight-word">extras.</span></>} light /></div>
+            <div className="experience-grid">{experience.map((item) => { const Icon = item.icon; return <article className="experience-card" key={item.title}><div className="experience-card-top"><span className="experience-icon"><Icon size={23} strokeWidth={1.9} /></span></div><h3>{item.title}</h3><p>{item.text}</p></article>; })}</div>
+          </div>
+        </section>
+
+        {/* Special guest section: commented out until confirmed.
         <section id="guest" className="guest-section">
           <div className="content-width guest-layout">
             <Headshot name={specialGuest.name} photo={specialGuest.photo} className="guest-photo" />
@@ -344,13 +312,12 @@ export default function App() {
             </div>
           </div>
         </section>
+        */}
 
-        <Registration />
-
-        <section id="faq" className="faq-section section-pad"><div className="content-width faq-layout"><div><SectionHeader eyebrow="GOOD TO KNOW" title={<>Frequently asked<br /><span className="highlight-word">questions.</span></>} /></div><div className="faq-list">{faqs.map((item) => <FaqItem key={item.q} q={item.q} a={item.a} />)}</div></div></section>
+        <section id="faq" className="faq-section section-pad"><div className="content-width faq-layout"><div><SectionHeader eyebrow="GOOD TO KNOW" title={<>Frequently asked<br /><span className="highlight-word">questions.</span></>} /><div className="faq-contact"><p>Additional questions? Contact us.</p><a className="button button--red faq-inquiry" href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent('Four Nations Youth Games Inquiry')}`}>Contact Us <Mail size={18} /></a></div></div><div className="faq-list">{faqs.map((item) => <FaqItem key={item.q} q={item.q} a={item.a} />)}</div></div></section>
       </main>
 
-      <footer className="footer"><div className="content-width footer-main"><div className="footer-brand"><img src={logo} alt="Future Stars Four Nations Youth Games logo" /></div><div className="footer-location"><MapPin size={19} /><span>Wings Arena · 5 Barry Pl., Stamford, CT<br />August 6–8, 2027<br /><a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a></span></div><a href="#top" className="back-to-top">BACK TO TOP <ArrowDown size={18} /></a></div><div className="content-width footer-bottom"><span>© 2026 Wings Arena</span><span>Event details subject to change</span></div></footer>
+      <footer className="footer"><div className="content-width footer-main"><div className="footer-brand"><img src={logo} alt="Future Stars Four Nations Youth Games logo" /></div><div className="footer-location"><MapPin size={19} /><span>Wings Arena · 5 Barry Pl., Stamford, CT<br />August 6–8, 2027<br /><a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a></span></div><div className="footer-partners"><img src={wingsLogo} alt="Wings Arena" className="partner-logo footer-wings" /><span className="footer-partners-divider" aria-hidden="true" /><div className="footer-partner"><span className="cta-partner-label">In partnership with</span><img src={coastalLogo} alt="Coastal Elite" className="partner-logo footer-coastal" /></div></div></div><div className="content-width footer-bottom"><span>© 2026 Wings Arena</span><a href="#top" className="back-to-top">BACK TO TOP <ArrowDown size={18} /></a><span>Event details subject to change</span></div></footer>
     </>
   );
 }
