@@ -266,8 +266,12 @@ button:disabled { opacity: .68; cursor: not-allowed; transform: none !important;
   .button--cta { width: 100%; }
   .section-heading h2 { font-size: 51px; }
   .section-intro { font-size: 14px; }
-  .showcase-card { padding: 15px; }
-  .showcase-card strong { font-size: clamp(53px, 15vw, 84px); }
+  /* Division cards side by side on phones */
+  .about-showcase { grid-template-columns: 1fr 1fr; gap: 12px; max-width: none; }
+  .showcase-card { padding: 15px; aspect-ratio: 1.25; gap: 10px; }
+  .showcase-card strong { font-size: clamp(40px, 12vw, 60px); }
+  .showcase-card > .showcase-label { font-size: 10px; }
+  .showcase-year { gap: 8px; }
   .nations-grid { gap: 12px; }
   .nation-card-bottom { padding: 16px 14px 18px; }
   .nation-card-bottom > div { gap: 7px; }
