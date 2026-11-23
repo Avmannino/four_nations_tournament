@@ -251,6 +251,7 @@ button:disabled { opacity: .68; cursor: not-allowed; transform: none !important;
   .experience-top .section-heading h2 { font-size: min(51px, calc((100vw - 36px) / 6.6)); white-space: nowrap; }
   .about-layout .section-heading h2 { font-size: min(51px, calc((100vw - 36px) / 9.3)); white-space: nowrap; }
   .cta-bar { padding: 24px 0; }
+  .hero { background-image: url('./assets/hero-background-mobile.png'); aspect-ratio: 941 / 1672; } /* portrait banner, shown whole */
   /* Sized so Wings | divider | partner block fit on one row down to 320px screens */
   .cta-layout { gap: 20px; }
   .partner-logo--wings { height: 110px; margin: -14px -9px; }
