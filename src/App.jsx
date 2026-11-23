@@ -202,6 +202,7 @@ export default function App() {
                 )}
               </div>
             </div>
+            <span className="cta-logos-divider" aria-hidden="true" />
             <div className="cta-partner">
               <span className="cta-partner-label">In partnership with</span>
               <img src={coastalLogo} alt="Coastal Elite" className="partner-logo partner-logo--coastal" />
