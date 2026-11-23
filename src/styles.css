@@ -274,8 +274,14 @@ button:disabled { opacity: .68; cursor: not-allowed; transform: none !important;
   .nation-flag { width: 26px; height: 17px; }
   .nation-card h3 { font-size: clamp(18px, 5.8vw, 22px); }
   .nation-card small { font-size: 10px; min-height: 28px; }
-  .experience-grid { grid-template-columns: 1fr; gap: 12px; }
-  .experience-card-top { margin-bottom: 12px; }
+  /* Compact 2-column grid on phones (the odd last card spans the row via the 810px rule) */
+  .experience-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .experience-card { padding: 16px; }
+  .experience-card-top { margin-bottom: 10px; }
+  .experience-icon { width: 36px; height: 36px; }
+  .experience-icon svg { width: 19px; height: 19px; }
+  .experience-card h3 { font-size: 15px; margin-bottom: 4px; }
+  .experience-card p { font-size: 13px; line-height: 1.55; }
   .coaches-intro { font-size: 16px; }
   .day-card { display: block; padding: 22px 20px 24px; }
   .day-card-head { padding: 0 0 18px; margin-bottom: 18px; border-right: 0; border-bottom: 1px solid #e2e8ef; }
