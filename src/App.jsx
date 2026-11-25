@@ -22,7 +22,7 @@ import coastalLogo from './assets/coastal-logo.png';
 // import jakeThibeaultPhoto from './assets/jake.jpg';
 import { CanadaFlag, FinlandFlag, SwedenFlag, UsaFlag } from './flags';
 
-const CONTACT_EMAIL = import.meta.env.VITE_EVENT_CONTACT_EMAIL?.trim() || 'tournament@wingsarena.com';
+const CONTACT_EMAIL = import.meta.env.VITE_EVENT_CONTACT_EMAIL?.trim() || 'futurestarsyouthgames@gmail.com';
 // TODO: paste the registration link here once organizers provide it.
 // Until then, the registration button shows a disabled "coming soon" state.
 const REGISTER_URL = '';
@@ -106,11 +106,11 @@ const faqs = [
   },
   {
     q: 'Are players representing their home countries?',
-    a: 'No. Players are invited local AA players assigned to USA, Canada, Finland, or Sweden-themed teams. The country theme is part of what makes the weekend unique. It is not an international competition, and a player’s nationality has nothing to do with team assignments.',
+    a: 'No. Players are assigned to USA, Canada, Finland, or Sweden-themed teams. The country theme is part of what makes the weekend unique. It is not an international competition, and a player’s nationality has nothing to do with team assignments.',
   },
   {
     q: 'What birth years and skill level are eligible?',
-    a: 'The tournament is for invited local 2016 AA and 2017 AA players. Each birth-year division has 4 country-themed teams of 15 players (8 forwards, 5 defense, and 2 goalies): USA, Canada, Finland, and Sweden.',
+    a: 'The tournament is for 2016 AA and 2017 AA players. Each birth-year division has 4 country-themed teams of 15 players (8 forwards, 5 defense, and 2 goalies): USA, Canada, Finland, and Sweden.',
   },
   {
     q: 'Who coaches the teams?',
@@ -213,7 +213,7 @@ export default function App() {
         <section id="about" className="about-section section-pad">
           <div className="content-width about-layout">
             <div>
-              <SectionHeader eyebrow="THE TOURNAMENT" title={<>Compete with purpose.<br /><span className="highlight-word">Develop with every shift.</span></>} body="An invitation-only weekend for local 2016 and 2017 AA players, built around meaningful games and real instruction, and designed to send every player home a better hockey player." />
+              <SectionHeader eyebrow="THE TOURNAMENT" title={<>Compete with purpose.<br /><span className="highlight-word">Develop with every shift.</span></>} body="An invitation-only weekend for 2016 and 2017 AA players, built around meaningful games and real instruction, and designed to send every player home a better hockey player." />
               <a href="#format" className="inline-link">See the weekend schedule <ArrowRight size={18} /></a>
             </div>
             <div className="about-showcase">
